@@ -25,7 +25,15 @@ module.exports = {
 
   create: function(req, res) {
     var params = req.param('params');
-    params.user = {ip:req.ip};
+    //heroku hack
+    var ipAddr = req.headers["x-forwarded-for"];
+    if (ipAddr){
+      var list = ipAddr.split(",");
+      ipAddr = list[list.length-1];
+    } else {
+      ipAddr = req.connection.remoteAddress;
+    }
+    params.user = {ip:ipAddr};
     params.classTaken = params.classTaken.toUpperCase();
     //todo: validate
     var rating = params.rating;
