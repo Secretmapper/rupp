@@ -1,0 +1,37 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <b ng-bind="professor.fullName"></b>
+    </div>
+    <div class="panel-body">
+        <div class="media">
+            <a class="thumbnail pull-left" href="#">
+                <img holder-js="holder.js/150x150">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading" ng-bind="professor.fullName">David Celso</h4>
+
+                <div class="class-box-main">
+                    Email: <span ng-bind="professor.email || 'N/A'"></span><br>
+                    Department: <span ng-bind="professor.department || 'N/A'"></span><br>
+                    Location: CONCEALED<br>
+                </div>
+                <!--<div class="professor-box">
+                    Prof. A. C
+                </div>-->
+                <div class="score-card">
+                    <ul class="list-inline">
+                        <li><strong ng-bind="professor.rating.overall | number: 2"></strong>
+                            <span>Overall</span></li>
+                        <li><strong ng-bind="professor.rating.helpfulness | number: 2"></strong>
+                            <span>Helpfulness</span></li>
+                        <li><strong ng-bind="professor.rating.pedagogy | number: 2"></strong>
+                            <span>Pedagogy</span></li>
+                        <li><strong ng-bind="professor.rating.easiness | number: 2"></strong>
+                            <span>Easiness</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <a ui-sref="rupp.rate({profId:profId})" type="button" class="btn btn-success btn-lg pull-right">Add your own Rating!</a>
+    </div>
+</div>

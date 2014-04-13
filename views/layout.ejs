@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--
+        For demonstration purposes, the `title` is dynamically set here based on
+        your `sails.config.appName` to show that you can inject data into layouts
+        exactly the same way as with your other view templates.
+    -->
+    <title><%- title %></title>
+
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <!--
+
+      Stylesheets
+      ========================
+
+      You can link any CSS, LESS, or image files in your `assets` directory
+      as you would normally: using <link/> tags.
+      
+    -->
+
+    <link rel="stylesheet" href="/styles/bootstrap.min.css" media="screen">
+    <link href="/bower_components/pace/themes/pace-theme-minimal.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles/styles.css" media="screen">
+    <!--
+
+      Support for LESS included by default
+      ================================================
+
+      LESS files are automatically compiled when they change using the Gruntfile
+      located in the top-level of this Sails app.  If you run into issues with styles
+      not reloading, check the Sails log output in your console for LESS compilation errors.
+      If necessary, shut down and then lift your app again.
+      
+    -->
+
+  </head>
+
+  <body ng-app="ruppApp">
+
+    <!-- Include the view file for the current controller/route -->
+    <div class="site-wrapper" ng-controller="NavBarCtrl">
+      <div class="navbar navbar-default">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Rate UP Professors</a>
+        </div>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+          <ul class="nav navbar-nav">
+            <li><a ui-sref="rupp.topProfessors">Top Professors</a></li>
+            <li><a ui-sref="rupp.index">Search Professor</a></li>
+            <li><a ui-sref="rupp.addProfessor">Add Professor</a></li>
+          <form class="navbar-form navbar-left">
+            <input type="text" class="form-control col-lg-8" ng-model="asyncSelected" placeholder="Search Professor/Class"
+                   typeahead="professors.name for professors in findProfessor($viewValue) | filter:$viewValue"
+                   typeahead-on-select="selectProfessor($item, $model, $label)">
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a ui-sref="rupp.index">Contact</a></li>
+            <li><a ui-sref="rupp.index">Coming Soon</a></li>
+          </ul>
+        </div>
+      </div>
+      <div ui-view>
+        <%- body %>
+      </div>
+    </div>
+
+    <!--
+
+      Client-side Javascript
+      ========================
+
+      You can import any js files in your `assets` directory as you would 
+      normally: using <script></script> tags.
+
+      Here's an example of importing a few dependencies, in order:
+    -->
+    <!-- Bring in the socket.io client -->
+    <!--<script type="text/javascript" src="/js/socket.io.js"></script>-->
+    <!-- then beef it up with some convenience logic for talking to Sails.js -->
+    <script type="text/javascript" src="/js/sails.io.js"></script>
+    <!-- listen on socket.io for incoming messages -->
+    <!--<script type="text/javascript" src="/js/app.js"></script>-->
+    <script src="/bower_components/pace/pace.js"></script>
+
+    <!-- Your scripts here? -->
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="/bower_components/holderjs/holder.js"></script>
+    <!-- Your scripts here? -->
+    <script src="/js/rupp.js"></script>
+    <script src="/js/service.js"></script>
+    <script src="/js/controller.js"></script>
+    <script src="/js/directive.js"></script>
+    <!-- Your scripts here? -->
+
+
+    <!--
+
+      Looking for client-side CoffeeScript or TypeScript?
+      ================================================
+
+      CoffeeScript and TypeScript precompilation are not installed by default,
+      but if you'd like to mix those features in, it is straightforward to
+      `npm install` the relevant grunt community modules and modify your Gruntfile
+      to use them.
+
+    -->
+
+
+
+    <!--
+
+      Another way: The Asset Linker
+      ========================
+
+      Sails supports a Grunt-based asset linker, to automatically inject 
+      <link> and <script> tags, as well any client-side templates you're using
+      into your HTML layouts and views, respecting dependencies.
+
+      You created this Sails app with the asset linker disabled.
+      If you change your mind, check out the docs on the subject:
+      http://sailsjs.org/#!documentation/asset-management
+
+    -->
+
+    </body>
+</html>

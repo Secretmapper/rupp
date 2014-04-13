@@ -1,0 +1,39 @@
+<form>
+    <div class="jumbotron">
+        <h1>Hello, UP Students!</h1>
+        <p>Welcome to Rate UP Professors, the most comprehensive database for knowing your professors</p>
+        <form class="form-control">
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="asyncSelected" placeholder="Type a Professor's Name"
+                   typeahead="professors.name for professors in findProfessor($viewValue) | filter:$viewValue"
+                   typeahead-on-select="selectProfessor($item, $model, $label)">
+            </div>
+            <div class="row">
+                <div class="span6" style="text-align:right">
+                    <!--<p><a class="btn btn-primary btn-lg" role="button">Search</a></p>-->
+                </div>
+            </div>
+        </form>
+    </div>
+</form>
+<div class="row">
+    <div class="col-lg-4 text-center">
+        <h2>Completely Secure</h2>
+        <div class="glyphicon glyphicon-user" style="font-size:76px"></div>
+        <p>We are not going to share your ip-address or email to anyone, so you can anonymously review your professors without fear of them knowing who you are!</p>
+        <p>View our <a>Privacy Policy</a> and <a>Terms and Conditions</a></p>
+    </div>
+    <div class="col-lg-4 text-center">
+        <h2>By UP Students, for UP Students</h2>
+        <div class="glyphicon glyphicon-heart" style="font-size:76px"></div>
+        <p>Rate UP Professors (RUPP) is created by an incoming freshman of UP Diliman as a service to find the best professors in the campus.</p>
+        <p>Did you get that? An incoming freshman made this website, so feel free to
+            <a href="mailto:{{email|rot13decrypt}}">contact me</a>
+            if you find any bugs and/or want to invite me to parties</p>
+    </div>
+    <div class="col-lg-4 text-center">
+        <h2>More Features!</h2>
+        <div class="glyphicon glyphicon-plus" style="font-size:76px"></div>
+        <p>RUPP is continously improving and gaining new features. Have an idea? Feel free to request more features through my email on the left.</p>
+    </div>
+</div>

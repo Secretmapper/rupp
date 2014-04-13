@@ -1,0 +1,51 @@
+<div>
+    <div class="row">
+        <div class="col-md-8">
+            <rupp-class>
+                Loading...
+            </rupp-class>
+        </div>
+        <div class="col-md-4">
+            <h4>Other Professors teaching CS50:</h4>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Rating</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Robert Shelob</td>
+                    <td>5</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <tabset>
+        <tab heading="Comments and Ratings">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th style="width:75px">Date</th>
+                    <th style="width:75px">Class</th>
+                    <th style="width: 200px">Rating</th>
+                    <th>Comment</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="review in reviews">
+                    <td ng-bind="review.year"></td>
+                    <td ng-bind="review.classTaken"></td>
+                    <td>
+                        <review-rating value="review.rating"></review-rating>
+                    </td>
+                    <td ng-bind="review.comment"></td>
+                </tr>
+                </tbody>
+            </table>
+            <pagination on-select-page="changePage(page)" total-items="count" page="page" max-size="10" class="pagination" boundary-links="true"></pagination>
+        </tab>
+    </tabset>
+</div>

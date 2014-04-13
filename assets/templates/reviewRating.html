@@ -1,0 +1,6 @@
+  <h4>Average Quality: <span ng-bind="ratingAverage"></span></h4>
+<div ng-repeat="rate in rating">
+    <span class="pull-left" ng-bind="rate.title | capitalize">Easiness:</span>
+    <rating class="text-info pull-right" value="rate.value" max="reviewMax" readonly="'true'"></rating>
+    <br>
+</div>

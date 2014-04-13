@@ -1,0 +1,45 @@
+<h2>Add Professor</h2>
+<form>
+    <div class="panel panel-default" ng-class="{'has-error':review.rating[detail.field]==null&&trySubmit}">
+        <div class="panel-body">
+            <div class="alert alert-dismissable alert-warning">
+                <!--<button type="button" class="close" data-dismiss="alert">×</button>-->
+                <h4>Warning!</h4>
+                <p>Search and make sure the professor is not yet in our <a href="#" class="alert-link">database</a>!</p>
+            </div>
+            <div class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">First Name</label>
+                    <div class="col-sm-10">
+                        <input name="firstName" ng-model="professor.firstName" type="text" class="form-control" placeholder="First Name" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Last Name</label>
+                    <div class="col-sm-10">
+                        <input name="lastName" ng-model="professor.lastName" type="text" class="form-control" placeholder="Last Name" required/>
+                    </div>
+                </div>
+                <h4>Optional: </h4>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Email Address</label>
+                    <div class="col-sm-10">
+                        <input name="emailAddress" ng-model="professor.emailAddress" type="email" class="form-control" placeholder="Email"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Department</label>
+                    <div class="col-sm-10">
+                        <input name="department" ng-model="professor.department" type="text" class="form-control" placeholder="(i.e. Computer Science)"/>
+                    </div>
+                </div>
+                <div class="form-inline">
+                    <button ng-click="formCallback(professor)" ng-disabled="!userAgreement" type="submit" class="btn btn-primary pull-right">Submit</button>
+                    <span class="pull-right">You must Agree to our Terms and Conditions
+                    <input ng-model="userAgreement" type="checkbox" name="userAgreement" required/>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
