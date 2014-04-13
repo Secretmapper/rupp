@@ -451,24 +451,6 @@ module.exports = function (grunt) {
     'coffee:dev'
   ]);
 
-  grunt.registerTask('prod', [
-    'clean:dev',
-    'jst:dev',
-    'less:dev',
-    //'sass:dev',
-    'copy:dev',
-    'coffee:dev',
-    'concat',
-    'uglify',
-    'cssmin',
-    'sails-linker:prodJs',
-    'sails-linker:prodStyles',
-    'sails-linker:devTpl',
-    'sails-linker:prodJsJADE',
-    'sails-linker:prodStylesJADE',
-    'sails-linker:devTplJADE'
-  ]);
-
   grunt.registerTask('linkAssets', [
 
     // Update link/script/template references in `assets` index.html
