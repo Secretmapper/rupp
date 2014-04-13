@@ -25,7 +25,7 @@ module.exports = {
 
   create: function(req, res) {
     var params = req.param('params');
-    params.user = {ip:req.connection.remoteAddress};
+    params.user = {ip:req.ip};
     params.classTaken = params.classTaken.toUpperCase();
     //todo: validate
     var rating = params.rating;
