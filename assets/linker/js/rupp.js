@@ -60,5 +60,6 @@ angular.module('ruppApp', ['ruppApp.directives', 'ruppApp.controllers', 'ruppApp
 }])
 
 .run(['$rootScope', function($rootScope){
-    $rootScope.domain = 'http://localhost:1337'
+    //$rootScope.domain = 'http://localhost:1337'
+    $rootScope.domain = 'http://rupp.herokuapp.com'
 }])
