@@ -12,16 +12,26 @@ angular.module('ruppApp.controllers', [])
     $scope.findProfessor = function(val) {
       return apiService.findProfessor(val).then(function(res){
         var professors = [];
-        angular.forEach(res, function(item){
-          item.name = item.lastName + ', ' + item.firstName
+
+        professors = res;
+
+        if(professors.length == 0) {
+          var item = {};
+          item.name = "No Results Found";
+          item.NoResults = true;
           professors.push(item);
-        });
+        }
+
         return professors;
       });
     };
+    $scope.routeProfessorSearch = function(item){
+      if(item.NoResults) return;
+      $scope.selectProfessor(item);
+    };
     $scope.selectProfessor = function(professor){
       $state.go('rupp.professor', {profId:professor.id});
-    }
+    };
 }])
 
 .controller('MainViewCtrl', ['$scope', '$stateParams', 'apiService', 'reviewService',
@@ -42,7 +52,6 @@ angular.module('ruppApp.controllers', [])
 
   reviewService.getReviews($scope.profId, 1, true).then(function(res){
     $scope.reviews = res.reviews;
-    console.log(res);
   });
 }])
 
@@ -90,8 +99,18 @@ angular.module('ruppApp.controllers', [])
     $scope.professor = {};
     $scope.formCallback = function(val){
       apiService.createProfessor(val).then(function(res){
-        console.log(res);
         $state.go('rupp.professor', {profId:res.id});
       })
     }
+}])
+
+
+.controller('ProfessorListCtrl', ['$scope', '$state', 'apiService', function ($scope, $state, apiService) {
+  $scope.professor = {};
+    /*
+  ($scope.formCallback = function(){
+    apiService.getTopProfessors().then(function(res){
+      $state.go('rupp.professor', {profId:res.id});
+    })
+  })();*/
 }])

@@ -1,5 +1,3 @@
-<h3>Coming Soon...</h3>
-<p>Really, I'm just testing out the feature so it should come within a day or so</p>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -8,9 +6,10 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td></td>
-            <td></td>
+        <tr ng-repeat="professor in professors">
+            <td><a ui-sref="rupp.professor({profId:professor._id})" ng-bind="professor.name"></a></td>
+            <td ng-bind="professor.rating.overall | number: 2"></td>
         </tr>
     </tbody>
 </table>
+<pagination on-select-page="changePage(page)" total-items="count" page="page" max-size="10" class="pagination" boundary-links="true"></pagination>

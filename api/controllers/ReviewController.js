@@ -37,12 +37,13 @@ module.exports = {
     params.classTaken = params.classTaken.toUpperCase();
     //todo: validate
     var rating = params.rating;
-    if(rating.helpfulness != null || rating.pedagogy != null || rating.easiness != null) {
-      if(isFinite(String(rating.helpfulness)) ||
-        isFinite(String(rating.pedagogy)) ||
+    if(rating.helpfulness != null && rating.pedagogy != null && rating.easiness != null) {
+      if(isFinite(String(rating.helpfulness)) &&
+        isFinite(String(rating.pedagogy)) &&
         isFinite(String(rating.easiness))) {
         Review.create(req.param('params')).exec(function(err, data){
           if(err) return res.send(err, 500);
+          data.toJSON();
           res.json(data);
           Professor.findOne(params.professor_id).exec(function(err, prof){
             if(prof){

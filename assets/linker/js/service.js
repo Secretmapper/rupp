@@ -5,6 +5,11 @@
 angular.module('ruppApp.services', [])
 
 .factory('apiService', ['$http', '$rootScope', function($http, $rootScope) {
+    function addName(res){
+      angular.forEach(res, function(item){
+        item.name = item.lastName + ', ' + item.firstName;
+      });
+    }
     return {
       getProfessor: function(value) {
         return $http.get($rootScope.domain + '/professor/find', {
@@ -15,9 +20,23 @@ angular.module('ruppApp.services', [])
             return result.data;
           })
       },
-      getTopProfessors: function(value){
-        return $http.get($rootScope.domain + '/professor/best')
+      getNeedingReview: function(page){
+        page = page || 1;
+        return $http.get($rootScope.domain + '/professor/needingReview')
           .then(function(result) {
+            addName(result.data);
+            return result.data;
+          })
+      },
+      getTopProfessors: function(page){
+        page = page || 1;
+        return $http.get($rootScope.domain + '/professor/best',{
+          params: {
+            page: page
+          }
+        })
+          .then(function(result) {
+            addName(result.data.profs);
             return result.data;
           })
       },
@@ -27,11 +46,14 @@ angular.module('ruppApp.services', [])
             name:value
           }
         }).then(function(result){
+            addName(result.data);
             return result.data;
         })
       },
       createProfessor: function(value) {
-        return $http.post($rootScope.domain + '/professor/create', value)
+        return $http.post($rootScope.domain + '/professor/create', {
+          params: value
+        })
           .then(function(result){
             return result.data;
         })

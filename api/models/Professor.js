@@ -46,6 +46,7 @@ module.exports = {
 
   toJSON: function() {
     var obj = this.toObject();
+    obj.name = obj.lastName + ", " + obj.firstName;
     delete obj.createdAt;
     delete obj.updatedAt;
     return obj;

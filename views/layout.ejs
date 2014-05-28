@@ -6,7 +6,7 @@
         your `sails.config.appName` to show that you can inject data into layouts
         exactly the same way as with your other view templates.
     -->
-    <title><%- title %></title>
+    <title>Rate UP Professors!</title>
 
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -21,8 +21,11 @@
       
     -->
 
+
     <!--STYLES-->
-    <link rel="stylesheet" href="/min/production.css">
+    <link rel="stylesheet" href="/linker/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="/linker/styles/styles.css">
+    <link rel="stylesheet" href="/linker/styles/variables.css">
     <!--STYLES END-->
 
     <!--<link rel="stylesheet" href="/styles/bootstrap.min.css" media="screen">
@@ -59,11 +62,11 @@
         </div>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <li><a ui-sref="rupp.topProfessors">Top Professors</a></li>
-            <li><a ui-sref="rupp.index">Search Professor</a></li>
+            <li><a ui-sref="rupp.topProfessors">All Professors</a></li>
+            <li><a ui-sref="rupp.needReview">Professors Needing Review</a></li>
             <li><a ui-sref="rupp.addProfessor">Add Professor</a></li>
           <form class="navbar-form navbar-left">
-            <input type="text" class="form-control col-lg-8" ng-model="asyncSelected" placeholder="Search Professor/Class"
+            <input type="text" class="form-control col-lg-8" ng-model="asyncSelected" placeholder="Search Professor"
                    typeahead="professors.name for professors in findProfessor($viewValue) | filter:$viewValue"
                    typeahead-on-select="selectProfessor($item, $model, $label)">
           </form>
@@ -109,7 +112,10 @@
     <!-- Your scripts here? -->
 
     <!--SCRIPTS-->
-    <script src="/min/production.js"></script>
+    <script src="/linker/js/controller.js"></script>
+    <script src="/linker/js/directive.js"></script>
+    <script src="/linker/js/rupp.js"></script>
+    <script src="/linker/js/service.js"></script>
     <!--SCRIPTS END-->
 
     <!--

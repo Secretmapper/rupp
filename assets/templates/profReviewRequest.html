@@ -1,0 +1,12 @@
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="professor in professors">
+        <td><a ui-sref="rupp.professor({profId:professor._id})" ng-bind="professor.name"></a></td>
+    </tr>
+    </tbody>
+</table>

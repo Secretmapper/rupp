@@ -33,8 +33,12 @@ angular.module('ruppApp', ['ruppApp.directives', 'ruppApp.controllers', 'ruppApp
         templateUrl: 'partials/homepage.html',
         controller: 'HomePageCtrl'
       })
+      .state('rupp.needReview', {
+        url: '/needreview',
+        templateUrl: 'partials/needingReview.html',
+        controller: 'MainViewCtrl'
+      })
       .state('rupp.professor', {
-        //url: '/viewprof/:profId',
         url: '/viewprof/{profId:[^\s]+}',
         templateUrl: 'partials/viewProf.html',
         controller: 'MainViewCtrl'

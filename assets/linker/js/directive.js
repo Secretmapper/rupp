@@ -57,15 +57,39 @@ angular.module('ruppApp.directives', [])
 })
 
 .directive('professorList', function (apiService) {
+    return {
+      //controller: 'ProfessorListCtrl',
+      restrict: 'AE',
+      scope: {
+
+      },
+      templateUrl:'/templates/professorList.html',
+      link: function ($scope, elem) {
+        $scope.changePage = function(page){
+          apiService.getTopProfessors(page).then(function(data){
+            $scope.count = data.count;
+            $scope.professors = data.profs;
+          });
+        }
+        apiService.getTopProfessors().then(function(data){
+          $scope.count = data.count;
+          $scope.professors = data.profs;
+        })
+      }
+    };
+})
+
+.directive('profReviewRequest', function (apiService) {
   return {
+    //controller: 'ProfessorListCtrl',
     restrict: 'AE',
     scope: {
-      professors: '='
+
     },
-    templateUrl:'/templates/professorList.html',
+    templateUrl:'/templates/profReviewRequest.html',
     link: function ($scope, elem) {
-      apiService.getTopProfessors().then(function(data){
-        console.log(data);
+      apiService.getNeedingReview().then(function(data){
+        $scope.professors = data;
       })
     }
   };
