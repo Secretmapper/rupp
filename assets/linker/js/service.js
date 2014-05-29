@@ -40,6 +40,17 @@ angular.module('ruppApp.services', [])
             return result.data;
           })
       },
+      findDuplicate: function(value) {
+        return $http.get($rootScope.domain + '/professor/findDuplicate', {
+          params: {
+            firstName: value.firstName,
+            lastName: value.lastName
+          }
+        })
+          .then(function(result){
+            return result.data;
+          })
+      },
       findProfessor: function(value) {
         return $http.get($rootScope.domain + '/professor/json', {
           params:{

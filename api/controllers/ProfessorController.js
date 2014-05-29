@@ -27,11 +27,19 @@ module.exports = {
   _config: {},
 
   create: function(req, res) {
-    Professor.create(req.param('params')).exec(function(err, data){
-      console.log(err);
+    Professor.findOrCreate(req.param('params')).exec(function(err, data){
+      console.log(data, req.param('params'));
       if(err) return res.send(err, 500);
       res.json(data);
     });
+  },
+
+  findDuplicate: function(req, res) {
+    Professor.findOne({firstName:req.param('firstName'), lastName:req.param('lastName')})
+      .exec(function(err, data){
+        if(err) return res.send(err, 500);
+        res.json(data);
+      });
   },
 
   find: function(req, res) {

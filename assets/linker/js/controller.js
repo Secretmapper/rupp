@@ -97,8 +97,28 @@ angular.module('ruppApp.controllers', [])
 
 .controller('AddProfessorCtrl', ['$scope', '$state', 'apiService', function ($scope, $state, apiService) {
     $scope.professor = {};
+
+    $scope.userAgreement = false;
+    $scope.duplicateProf = true;
+
+    $scope.onNameBlur = function(){
+      if($scope.professor.firstName && $scope.professor.lastName) {
+        var query = {firstName: $scope.professor.firstName, lastName: $scope.professor.lastName};
+          apiService.findDuplicate(query).then(function(res){
+            if(res){
+              res.name = res.firstName + " " + res.lastName;
+              res.sentinel = true;
+              $scope.duplicateProf = res;
+            } else {
+              $scope.duplicateProf = false;
+            }
+        })
+      }
+    }
+
     $scope.formCallback = function(val){
       apiService.createProfessor(val).then(function(res){
+        console.log(res);
         $state.go('rupp.professor', {profId:res.id});
       })
     }

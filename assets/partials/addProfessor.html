@@ -1,5 +1,5 @@
 <h2>Add Professor</h2>
-<form>
+<form name="addProfForm">
     <div class="panel panel-default" ng-class="{'has-error':review.rating[detail.field]==null&&trySubmit}">
         <div class="panel-body">
             <div class="alert alert-dismissable alert-warning">
@@ -11,13 +11,20 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">First Name</label>
                     <div class="col-sm-10">
-                        <input name="firstName" ng-model="professor.firstName" type="text" class="form-control" placeholder="First Name" required/>
+                        <input name="firstName" ng-model="professor.firstName" type="text" class="form-control" placeholder="First Name" ng-blur="onNameBlur()" required/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Last Name</label>
                     <div class="col-sm-10">
-                        <input name="lastName" ng-model="professor.lastName" type="text" class="form-control" placeholder="Last Name" required/>
+                        <input name="lastName" ng-model="professor.lastName" type="text" class="form-control" placeholder="Last Name" ng-blur="onNameBlur()" required/>
+                    </div>
+                </div>
+                <div class="form-group" collapse="!(duplicateProf && duplicateProf.sentinel)">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="alert alert-danger">
+                            <p>We already have a <a ui-sref="rupp.professor({profId:duplicateProf.id})" ng-bind="duplicateProf.name">Weng Solamo</a> in our database!</p>
+                        </div>
                     </div>
                 </div>
                 <h4>Optional: </h4>
@@ -34,7 +41,7 @@
                     </div>
                 </div>
                 <div class="form-inline">
-                    <button ng-click="formCallback(professor)" ng-disabled="!userAgreement" type="submit" class="btn btn-primary pull-right">Submit</button>
+                    <button ng-click="formCallback(professor)" ng-disabled="!(userAgreement && !duplicateProf)" type="submit" class="btn btn-primary pull-right">Submit</button>
                     <span class="pull-right">You must Agree to our Terms and Conditions
                     <input ng-model="userAgreement" type="checkbox" name="userAgreement" required/>
                     </span>
