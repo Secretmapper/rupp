@@ -25,7 +25,7 @@ angular.module('ruppApp', ['ruppApp.directives', 'ruppApp.controllers', 'ruppApp
 .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider){
     $stateProvider
       .state('rupp', {
-        url: '/main',
+        url: '',
         abstract: true,
         templateUrl: '/partials/home.html'
       })
@@ -60,8 +60,9 @@ angular.module('ruppApp', ['ruppApp.directives', 'ruppApp.controllers', 'ruppApp
         url: '/contact',
         templateUrl: '/partials/contact.html'
       })
-    $urlRouterProvider.otherwise('/main/search-prof');
-    $locationProvider.html5Mode(true).hashPrefix('!');;
+    $urlRouterProvider.otherwise('/search-prof');
+    //$locationProvider.html5Mode(true).hashPrefix('!');;
+    $locationProvider.hashPrefix('!');
   }])
 
 .config(function (facebookConfigProvider) {
