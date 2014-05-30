@@ -118,7 +118,6 @@ angular.module('ruppApp.controllers', [])
 
     $scope.formCallback = function(val){
       apiService.createProfessor(val).then(function(res){
-        console.log(res);
         $state.go('rupp.professor', {profId:res.id});
       })
     }
