@@ -95,11 +95,32 @@ angular.module('ruppApp.directives', [])
   };
 })
 
-.directive('ruppClass', [function(){
+.directive('ruppClass', ['$location', function(location){
   return {
     restrict: 'AE',
     templateUrl: '/templates/class.html',
-    link:function(){
+    link:function($scope){
+      $scope.url = location.url;
     }
   }
+}])
+
+.directive('fbShare', ['$location',
+  function($location) {
+    return {
+      restrict: 'A',
+      link: function($scope, element) {
+        element.on('click', function() {
+          FB.ui({
+            method: 'share',
+            name: $scope.professor.fullName + ' at Rate UP Professors!',
+            href: $location.url,
+            //picture: 'http://picture-you-want-to-show',
+            //caption:
+            description: 'Took a class of ' + $scope.professor.fullName + " or Planning on taking it? Find out past student's" +
+            "thoughts on it or add your own!",
+          });
+        });
+      }
+    };
 }])

@@ -34,14 +34,23 @@ angular.module('ruppApp.controllers', [])
     };
 }])
 
-.controller('MainViewCtrl', ['$scope', '$stateParams', 'apiService', 'reviewService',
-    function ($scope, $stateParams, apiService, reviewService) {
+.controller('MainViewCtrl', ['$rootScope', '$scope', '$stateParams', 'apiService', 'reviewService', '$location',
+    function ($rootScope, $scope, $stateParams, apiService, reviewService, $location) {
   $scope.profId = $stateParams.profId;
   $scope.reviewMax = reviewService.reviewMax;
 
   apiService.getProfessor($scope.profId).then(function(res){
     $scope.professor = res;
     $scope.professor.fullName = res.firstName + ' ' + res.lastName;
+
+    $rootScope.meta = {
+      title: $scope.professor.fullName + ' at Rate UP Professors!',
+      url: $location.url,
+      description: 'Took ' + $scope.professor.fullName + "'s class or Planning on taking it? Find out past student's" +
+                  "thoughts or add your own!",
+      image: null
+    };
+
   });
 
   $scope.changePage = function(id){
@@ -53,6 +62,7 @@ angular.module('ruppApp.controllers', [])
   reviewService.getReviews($scope.profId, 1, true).then(function(res){
     $scope.reviews = res.reviews;
   });
+
 }])
 
 .controller('RateClassCtrl', ['$scope', '$state', '$stateParams', 'reviewService',

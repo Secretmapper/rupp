@@ -3,7 +3,8 @@
  */
 
 angular.module('ruppApp', ['ruppApp.directives', 'ruppApp.controllers', 'ruppApp.services',
-                           'ui.bootstrap', 'ui.router'])
+                           'ui.bootstrap', 'ui.router',
+                           'angularjs-facebook-sdk'])
 
 .filter('capitalize', function() {
   return function(input, scope) {
@@ -21,7 +22,7 @@ angular.module('ruppApp', ['ruppApp.directives', 'ruppApp.controllers', 'ruppApp
   }
 })
 
-.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
+.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider){
     $stateProvider
       .state('rupp', {
         url: '',
@@ -36,7 +37,6 @@ angular.module('ruppApp', ['ruppApp.directives', 'ruppApp.controllers', 'ruppApp
       .state('rupp.needReview', {
         url: '/needreview',
         templateUrl: 'partials/needingReview.html',
-        controller: 'MainViewCtrl'
       })
       .state('rupp.professor', {
         url: '/viewprof/{profId:[^\s]+}',
@@ -61,9 +61,32 @@ angular.module('ruppApp', ['ruppApp.directives', 'ruppApp.controllers', 'ruppApp
         templateUrl: 'partials/contact.html'
       })
     $urlRouterProvider.otherwise('/search-prof');
-}])
+    //$locationProvider.html5Mode(true);
+  }])
+
+.config(function (facebookConfigProvider) {
+  facebookConfigProvider.setAppId(475573052545126);
+  facebookConfigProvider.setLanguage('en-US');
+  facebookConfigProvider.setDebug(true);
+
+  facebookConfigProvider.autoInit(true);
+
+  // Same: developers.facebook.com/docs/javascript/reference/FB.init/
+  facebookConfigProvider.setOptions({
+    status: true
+  });
+})
 
 .run(['$rootScope', function($rootScope){
-    //$rootScope.domain = 'http://localhost:1337'
-    $rootScope.domain = 'http://rupp.herokuapp.com'
+    //$rootScope.domain = 'http://localhost:1337';
+    $rootScope.domain = 'http://rupp.herokuapp.com';
+
+    $rootScope.meta = {
+      title: 'Rate UP Professors!',
+      url: $rootScope.domain,
+      description: 'Review and Rate UP Professors Anonymously!',
+      image: null
+    };
+
+
 }])

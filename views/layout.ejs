@@ -11,6 +11,13 @@
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
+    <!-- Facebook Meta -->
+    <meta property="og:title" content="{{meta.page_title}}">
+    <meta property="og:site_name" content="Rate UP Professors!">
+    <meta property="og:url" content="{{meta.page_url}}">
+    <meta property="og:description" content="{{meta.description}}">
+    <meta property="og:image" content="{{meta.image}}">
+
     <!--
 
       Stylesheets
@@ -24,6 +31,7 @@
 
     <!--STYLES-->
     <link rel="stylesheet" href="/linker/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="/linker/styles/social-buttons-3.css">
     <link rel="stylesheet" href="/linker/styles/styles.css">
     <link rel="stylesheet" href="/linker/styles/variables.css">
     <!--STYLES END-->
@@ -32,6 +40,7 @@
     <link rel="stylesheet" href="/styles/styles.css" media="screen">-->
 
     <link href="/bower_components/pace/themes/pace-theme-minimal.css?v=<%- assetVersion %>" rel="stylesheet" />
+    <link href="/bower_components/font-awesome-4.1.0/css/font-awesome.min.css?v=<%- assetVersion %>" rel="stylesheet" />
 
     <!--
 
@@ -64,15 +73,16 @@
           <ul class="nav navbar-nav">
             <li><a ui-sref="rupp.topProfessors">All Professors</a></li>
             <li><a ui-sref="rupp.needReview">Professors Needing Review</a></li>
-            <li><a ui-sref="rupp.addProfessor">Add Professor</a></li>
-          <form class="navbar-form navbar-left">
-            <input type="text" class="form-control col-lg-8" ng-model="asyncSelected" placeholder="Search Professor"
-                   typeahead="professors.name for professors in findProfessor($viewValue) | filter:$viewValue"
-                   typeahead-on-select="selectProfessor($item, $model, $label)">
-          </form>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a ui-sref="rupp.index">Contact</a></li>
-            <li><a ui-sref="rupp.index">Coming Soon</a></li>
+              <li><a ui-sref="rupp.addProfessor">Add Professor</a></li>
+            <form class="navbar-form navbar-left">
+              <input type="text" class="form-control col-lg-8" ng-model="asyncSelected" placeholder="Search Professor"
+                     typeahead="professors.name for professors in findProfessor($viewValue) | filter:$viewValue"
+                     typeahead-on-select="selectProfessor($item, $model, $label)">
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a ui-sref="rupp.index">Contact</a></li>
+              <li><a ui-sref="rupp.index">Coming Soon</a></li>
+            </ul>
           </ul>
         </div>
       </div>
@@ -104,6 +114,7 @@
     <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js?v=<%- assetVersion %>"></script>
     <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js?v=<%- assetVersion %>"></script>
     <script src="/bower_components/holderjs/holder.js?v=<%- assetVersion %>"></script>
+    <script src="/bower_components/angularjs-facebook-sdk/dist/angularjs-facebook-sdk.min.js?v=<%- assetVersion %>"></script>
     <!-- Your scripts here? -->
     <!--<script src="/js/rupp.js"></script>
     <script src="/js/service.js"></script>
