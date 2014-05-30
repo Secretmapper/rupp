@@ -79,9 +79,9 @@ angular.module('ruppApp', ['ruppApp.directives', 'ruppApp.controllers', 'ruppApp
 })
 
 .run(['$rootScope', function($rootScope){
-    $rootScope.domain = 'http://localhost:1337';
+    //$rootScope.domain = 'http://localhost:1337';
     $rootScope.assetDomain = '//' //root
-    //$rootScope.domain = 'http://rupp.herokuapp.com';
+    $rootScope.domain = 'http://rupp.herokuapp.com';
 
     $rootScope.meta = {
       title: 'Rate UP Professors!',
