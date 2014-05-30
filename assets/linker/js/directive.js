@@ -114,11 +114,11 @@ angular.module('ruppApp.directives', [])
           FB.ui({
             method: 'share',
             name: $scope.professor.fullName + ' at Rate UP Professors!',
-            href: $location.url,
+            href: window.location.href,
             //picture: 'http://picture-you-want-to-show',
             //caption:
             description: 'Took a class of ' + $scope.professor.fullName + " or Planning on taking it? Find out past student's" +
-            "thoughts on it or add your own!",
+            "thoughts on it or add your own!"
           });
         });
       }
