@@ -25,43 +25,43 @@ angular.module('ruppApp', ['ruppApp.directives', 'ruppApp.controllers', 'ruppApp
 .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider){
     $stateProvider
       .state('rupp', {
-        url: '',
+        url: '/main',
         abstract: true,
-        templateUrl: 'partials/home.html'
+        templateUrl: '/partials/home.html'
       })
       .state('rupp.index', {
         url: '/search-prof',
-        templateUrl: 'partials/homepage.html',
+        templateUrl: '/partials/homepage.html',
         controller: 'HomePageCtrl'
       })
       .state('rupp.needReview', {
         url: '/needreview',
-        templateUrl: 'partials/needingReview.html',
+        templateUrl: '/partials/needingReview.html',
       })
       .state('rupp.professor', {
         url: '/viewprof/{profId:[^\s]+}',
-        templateUrl: 'partials/viewProf.html',
+        templateUrl: '/partials/viewProf.html',
         controller: 'MainViewCtrl'
       })
       .state('rupp.rate', {
         url: '/rateprof/:profId',
-        templateUrl: 'partials/rateClass.html'
+        templateUrl: '/partials/rateClass.html'
       })
       .state('rupp.topProfessors', {
         url: '/top-professors',
-        templateUrl: 'partials/topProfessors.html'
+        templateUrl: '/partials/topProfessors.html'
       })
       .state('rupp.addProfessor', {
         url: '/add-professor',
-        templateUrl: 'partials/addProfessor.html',
+        templateUrl: '/partials/addProfessor.html',
         controller: 'AddProfessorCtrl'
       })
       .state('rupp.contact', {
         url: '/contact',
-        templateUrl: 'partials/contact.html'
+        templateUrl: '/partials/contact.html'
       })
-    $urlRouterProvider.otherwise('/search-prof');
-    //$locationProvider.html5Mode(true);
+    $urlRouterProvider.otherwise('/main/search-prof');
+    $locationProvider.html5Mode(true).hashPrefix('!');;
   }])
 
 .config(function (facebookConfigProvider) {
@@ -78,15 +78,14 @@ angular.module('ruppApp', ['ruppApp.directives', 'ruppApp.controllers', 'ruppApp
 })
 
 .run(['$rootScope', function($rootScope){
-    //$rootScope.domain = 'http://localhost:1337';
-    $rootScope.domain = 'http://rupp.herokuapp.com';
+    $rootScope.domain = 'http://localhost:1337';
+    $rootScope.assetDomain = '//' //root
+    //$rootScope.domain = 'http://rupp.herokuapp.com';
 
     $rootScope.meta = {
       title: 'Rate UP Professors!',
       url: $rootScope.domain,
       description: 'Review and Rate UP Professors Anonymously!',
       image: null
-    };
-
-
+    };;
 }])
