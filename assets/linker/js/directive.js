@@ -113,7 +113,7 @@ angular.module('ruppApp.directives', [])
         element.on('click', function() {
           FB.ui({
             method: 'share',
-            href: 'window.location.href'
+            href: window.location.href
           }, function(response){});
         });
       }
