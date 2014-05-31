@@ -1,4 +1,4 @@
-/**
+/**v
  * IndexController
  *
  * @module      :: Controller
@@ -27,7 +27,21 @@ module.exports = {
   _config: {},
 
   index: function(req, res){
-    res.view({'assetVersion': sails.config.assetVersion});
+    if (req.url.indexOf('?_escaped_fragment_=') > -1) {
+      var request = require('request');
+      request('http://rupp-phantom.herokuapp.com/' + req.originalUrl, function (error, response, body) {
+        console.log('escape2');
+        console.log(error,  response.statusCode);
+        if (!error && response.statusCode == 200) {
+          console.log('escape3');
+          console.log(body);
+          res.set('Content-Type', 'text/html');
+          res.send(body);
+        }
+      });
+    }
+    else
+      res.view({'assetVersion': sails.config.assetVersion});
   }
 
   

@@ -12,7 +12,8 @@
     "grunt-contrib-sass": "~0.7.3",
     "sails-mongo": "~0.9.7",
     "newrelic": "1.7.0",
-    "prerender-node": "~1.0.1"
+    "prerender-node": "~1.0.1",
+    "request": "~2.36.0"
   },
   "scripts": {
     "start": "node app.js",

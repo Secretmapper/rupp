@@ -32,12 +32,6 @@ module.exports.routes = {
   // located at `views/home/index.ejs`
   //
 
-  '/^_escaped_fragment_=/?(.*)$': {
-    controller: 'PhantomController'
-  },
-  '^_escaped_fragment_=/?(.*)$': {
-    controller: 'PhantomController'
-  },
   '/': {
     controller: 'HomeController'
   },
