@@ -53,7 +53,7 @@ angular.module('ruppApp.controllers', [])
   apiService.getProfessor($scope.profId).then(function(res){
     $scope.professor = res;
     $scope.professor.fullName = res.firstName + ' ' + res.lastName;
-    console.log('meta');
+    
     $rootScope.meta = {
       title: $scope.professor.fullName + ' at Rate UP Professors!',
       url: $location.url,
