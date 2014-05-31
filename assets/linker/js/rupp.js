@@ -4,7 +4,7 @@
 
 angular.module('ruppApp', ['ruppApp.directives', 'ruppApp.controllers', 'ruppApp.services',
                            'ui.bootstrap', 'ui.router',
-                           'angularjs-facebook-sdk'])
+                           'seo', 'angularjs-facebook-sdk'])
 
 .filter('capitalize', function() {
   return function(input, scope) {
@@ -36,7 +36,7 @@ angular.module('ruppApp', ['ruppApp.directives', 'ruppApp.controllers', 'ruppApp
       })
       .state('rupp.needReview', {
         url: '/needreview',
-        templateUrl: '/partials/needingReview.html',
+        templateUrl: '/partials/needingReview.html'
       })
       .state('rupp.professor', {
         url: '/viewprof/{profId:[^\s]+}',

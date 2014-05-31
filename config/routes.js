@@ -31,6 +31,13 @@ module.exports.routes = {
   // By default, your root route (aka home page) points to a view
   // located at `views/home/index.ejs`
   //
+
+  '/^_escaped_fragment_=/?(.*)$': {
+    controller: 'PhantomController'
+  },
+  '^_escaped_fragment_=/?(.*)$': {
+    controller: 'PhantomController'
+  },
   '/': {
     controller: 'HomeController'
   },

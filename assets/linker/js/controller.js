@@ -4,8 +4,17 @@
 
 angular.module('ruppApp.controllers', [])
 
+.controller('HeadCtrl', function($scope, $rootScope){
+  $rootScope.$watch('meta', function(){
+    $scope.meta = $rootScope.meta;
+    $scope.htmlReady();
+  });
+  $scope.meta = $rootScope.meta;
+})
+
 .controller('HomePageCtrl', ['$scope', function($scope){
   $scope.email = 'Frpergznccre16@tznvy.pbz';
+    $scope.htmlReady();
 }])
 
 .controller('NavBarCtrl', ['$scope', '$state', 'apiService', function ($scope, $state, apiService) {
@@ -46,11 +55,10 @@ angular.module('ruppApp.controllers', [])
     $rootScope.meta = {
       title: $scope.professor.fullName + ' at Rate UP Professors!',
       url: $location.url,
-      description: 'Took ' + $scope.professor.fullName + "'s class or Planning on taking it? Find out past student's" +
+      description: 'Took ' + $scope.professor.fullName + "'s class or Planning on taking it? Find out past student's " +
                   "thoughts or add your own!",
       image: null
     };
-
   });
 
   $scope.changePage = function(id){

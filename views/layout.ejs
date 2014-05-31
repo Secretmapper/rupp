@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html ng-app="ruppApp">
+  <head ng-controller="HeadCtrl">
     <%- rupp.newrelic.getBrowserTimingHeader() %>
     <title>Rate UP Professors!</title>
 
@@ -8,10 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="fragment" content="!" />
 
+    <!--<p ng-bind="meta.page_title"></p>
+    <p>{{meta.page_title}}</p>-->
     <!-- Facebook Meta -->
-    <meta property="og:title" content="{{meta.page_title}}">
+
+    <meta property="og:title" content="{{meta.title}}">
     <meta property="og:site_name" content="Rate UP Professors!">
-    <meta property="og:url" content="{{meta.page_url}}">
+    <meta property="og:url" content="{{meta.url}}">
     <meta property="og:description" content="{{meta.description}}">
     <meta property="og:image" content="{{meta.image}}">
 
@@ -25,7 +28,7 @@
 
   </head>
 
-  <body ng-app="ruppApp">
+  <body>
     <div class="site-wrapper" ng-controller="NavBarCtrl">
       <div class="navbar navbar-default">
         <div class="navbar-header">
@@ -60,6 +63,7 @@
 
     <script src="/bower_components/pace/pace.js?v=<%- assetVersion %>"></script>
     <script src="/bower_components/angular/angular.js?v=<%- assetVersion %>"></script>
+    <script src="/bower_components/angular-seo/angular-seo.js?v=<%- assetVersion %>"></script>
     <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js?v=<%- assetVersion %>"></script>
     <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js?v=<%- assetVersion %>"></script>
     <script src="/bower_components/holderjs/holder.js?v=<%- assetVersion %>"></script>
