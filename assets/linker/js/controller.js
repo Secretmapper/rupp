@@ -5,16 +5,18 @@
 angular.module('ruppApp.controllers', [])
 
 .controller('HeadCtrl', function($scope, $rootScope){
-  $rootScope.$watch('meta', function(){
+  $rootScope.$watch('meta', function(newVal, oldVal){
+    if(newVal === oldVal) {
+      return; //prevent watch on init
+    }
     $scope.meta = $rootScope.meta;
     $scope.htmlReady();
   });
   $scope.meta = $rootScope.meta;
 })
 
-.controller('HomePageCtrl', ['$scope', function($scope){
+.controller('HomePageCtrl', ['$scope', '$rootScope', function($scope, $rootScope){
   $scope.email = 'Frpergznccre16@tznvy.pbz';
-    $scope.htmlReady();
 }])
 
 .controller('NavBarCtrl', ['$scope', '$state', 'apiService', function ($scope, $state, apiService) {
@@ -51,7 +53,7 @@ angular.module('ruppApp.controllers', [])
   apiService.getProfessor($scope.profId).then(function(res){
     $scope.professor = res;
     $scope.professor.fullName = res.firstName + ' ' + res.lastName;
-
+    console.log('meta');
     $rootScope.meta = {
       title: $scope.professor.fullName + ' at Rate UP Professors!',
       url: $location.url,
