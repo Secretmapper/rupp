@@ -20,11 +20,6 @@ module.exports.adapters = {
 
   mongo: {
     module   : 'sails-mongo',
-    //host     : 'localhost',
-    //port     : 27017,
-    //host     : 'mongodb://<dbuser>:<dbpassword>@ds047037.mongolab.com:47037/heroku_app24087060',
-    //host: '<dbuser>:<dbpassword>@ds047037.mongolab.com/heroku_app24087060',
-    //port     : 47037,
     url: process.env.MONGOLAB_URI,
     database : 'rupp'
   }
